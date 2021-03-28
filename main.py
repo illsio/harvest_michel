@@ -3,55 +3,18 @@ from flask import Flask
 from flask_cors import CORS
 from database.database import countAll, fetchAll
 from Threads import Threads
+import os
 
 app = Flask(__name__)
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
-dings = "djdjdj"
-
-"""
-@app.route('/getJSON', methods=["GET"])
-def getJSON():
-    # Example call: curl -X GET http://127.0.0.1:5000/getJSON?hash=RvDQus7ubBlBcAeu
-    hash = request.args.get('hash')
-
-    db_entry = load(hash)
-
-    result = db_entry["config"]
-    response = app.response_class(
-        response=json.dumps(result),
-        status=200,
-        mimetype='application/json'
-    )
-    return response
-
-@app.route('/getResults', methods=["GET", "POST"])
-def getResults():
-    hash = request.args.get('hash')
-    db_entry = load(hash)
 
 
-    return "response"
+@app.route('/test', methods=["GET"])
+def test():
+    # Example call: curl -X GET http://127.0.0.1:5000/test
+    return "up and running"
 
-
-@app.route('/saveJSON', methods=["POST"])
-def saveJSON():
-    # Example call: curl -H Content-type:application/json -X POST -d@test.json http://127.0.0.1:5000/saveJSON
-    # With test.json in the same folder
-    json = request.get_json()
-    saveChart(json)
-    return 'success'
-
-wpsUrl = 'https://csl-lig.hcu-hamburg.de/geoserver/ows?service=WPS&request=EXECUTE&version=1.0.0'
-
-@app.route('/curl', methods=['POST'])
-def reRouteCurl():
-    # Example call: curl -H Content-type:text/xml -X POST -d@PointUnitQuery.xml http://127.0.0.1:5000/curl
-    # With PointUnitQuery.xml in the same folder
-    if request.method == 'POST':
-        #result = execute(xml=request.get_data())
-        return "result"
-"""
 
 @app.route('/getAllResults', methods=["GET"])
 def getAllResults():
@@ -83,7 +46,12 @@ def startEndlessRequestThread():
     return threads.startThread()
 
 
-if __name__ == "__main__":
-    app.run(host= '127.0.0.1',debug=True,threaded=True,)
-
+if __name__ == '__main__':
+    isDocker = os.getenv("DOCKER")
+    if isDocker:
+        print("Environment is Docker")
+        app.run(host='0.0.0.0', debug=True, threaded=True)
+    else:
+        print("Environment is NOT Docker")
+        app.run(host= '127.0.0.1', debug=True, threaded=True)
 
