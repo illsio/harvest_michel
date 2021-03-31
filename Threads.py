@@ -3,8 +3,8 @@ from database.database import saveAlertEntry, loadJSON, countAll, fetchAll
 
 class Threads:
     #WAIT_TIME_SECONDS = 2
-    #WAIT_TIME_SECONDS = 20
-    WAIT_TIME_SECONDS = 86400
+    WAIT_TIME_SECONDS = 20
+    #WAIT_TIME_SECONDS = 86400
     COUNTER_THREAD = 'counter'
 
     def __init__(self):
@@ -28,6 +28,8 @@ class Threads:
 
     def never_stop(self, x):
         counter = threading.Event()
+        print("We start it once now. Afterwards it runs in daily intervals.")
+        self.startSavingThread()
         while not counter.wait(x):
             self.startSavingThread()
 

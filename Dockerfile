@@ -6,5 +6,7 @@ RUN pip install -r requirements.txt
 EXPOSE 5000
 CMD ["python","main.py"]
 
-#docker build -t harvest-michael .
-#docker run -d -p 5000:5000 harvest-michael
+#docker build -t smasho/harvest-michael .
+#docker push smasho/harvest-michael
+
+#curl builder-back-end-44b495.appfleet.net:80/test
