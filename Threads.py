@@ -29,14 +29,14 @@ class Threads:
     def never_stop(self, x):
         counter = threading.Event()
         while not counter.wait(x):
-            self.foo()
+            self.startSavingThread()
 
     ##Threading
-    def foo(self):
+    def startSavingThread(self):
         entriesBefore = str(countAll())
         print("saving entries started at: ")
         print(time.ctime())
         data = loadJSON()
-        #saveAlertEntry(data)
+        saveAlertEntry(data)
         entriesAfter = str(countAll())
         print("we had: " + entriesBefore + " entries now we have: " + entriesAfter + " entries")
