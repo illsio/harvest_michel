@@ -3,8 +3,9 @@ from database.database import saveAlertEntry, loadJSON, countAll, fetchAll
 
 class Threads:
     #WAIT_TIME_SECONDS = 2
-    WAIT_TIME_SECONDS = 20
-    #WAIT_TIME_SECONDS = 86400
+    #WAIT_TIME_SECONDS = 20
+    # Just do one update every day
+    WAIT_TIME_SECONDS = 86400
     COUNTER_THREAD = 'counter'
 
     def __init__(self):
