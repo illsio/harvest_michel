@@ -11,10 +11,10 @@ services:
             - proxy
         labels:
             - "traefik.enable=true"
-            - "traefik.http.routers.mobility-frontend.entrypoints=https"
-            - "traefik.http.routers.mobility-frontend.rule=Host(`harvest-michael.cut.hcu-hamburg.de`)"
-            - "traefik.http.routers.mobility-frontend.tls=true"
-            - "traefik.http.routers.mobility-frontend.tls.certresolver=lets-encr"
+            - "traefik.http.routers.harvest-michael.entrypoints=https"
+            - "traefik.http.routers.harvest-michael.rule=Host(`harvest-michael.cut.hcu-hamburg.de`)"
+            - "traefik.http.routers.harvest-michael.tls=true"
+            - "traefik.http.routers.harvest-michael.tls.certresolver=lets-encr"
 
 networks:
     proxy:
